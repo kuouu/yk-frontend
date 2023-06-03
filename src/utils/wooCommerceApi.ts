@@ -1,8 +1,10 @@
 import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
 
+const END_POINT = process.env.END_POINT
+
 // initialise the WooCommerceRestApi //
 const api = new WooCommerceRestApi({
-  url: process.env.END_POINT!,
+  url: END_POINT!,
   consumerKey: process.env.WOOCOMMERCE_KEY!,
   consumerSecret: process.env.WOOCOMMERCE_SECRET!,
   version: "wc/v3"
@@ -11,6 +13,7 @@ const api = new WooCommerceRestApi({
 // fetch all products from WooCommerce //
 export const fetchWooCommerceProducts = async() =>  {
   try {
+    console.log(END_POINT)
     const response = await api.get("products")
     return response.data
   } catch (error: any) {
