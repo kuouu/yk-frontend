@@ -1,7 +1,7 @@
 import "@/styles/globals.css"
 import Navbar from "@/components/Navbar"
 
-import { getCourses } from "@/utils/tutor"
+import { getCourses } from "@/api/tutor"
 
 export const metadata = {
   title: '你的知識',

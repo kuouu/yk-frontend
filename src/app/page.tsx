@@ -1,5 +1,5 @@
 import Jumbotron from "@/components/Jumbotron"
-import { getCarouselImages } from "@/utils/graphql"
+import { getCarouselImages } from "@/api/graphql"
 const Home = async () => {
   const imageSrc = await getCarouselImages()
   return (
