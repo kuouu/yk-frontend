@@ -1,6 +1,12 @@
-const Home = () => {
+import Jumbotron from "@/components/Jumbotron"
+import { getCarouselImages } from "@/utils/graphql"
+const Home = async () => {
+  const imageSrc = await getCarouselImages()
   return (
-    <div>Home</div>
+    <div>
+      <Jumbotron imageSrc={imageSrc}/>
+      Home
+    </div>
   )
 }
 
