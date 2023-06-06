@@ -1,4 +1,4 @@
-const END_POINT = `${process.env.NEXT_PUBLIC_END_POINT}/wp-json/tutor/v1`
+const END_POINT = `${process.env.END_POINT}/wp-json/tutor/v1`
 
 export async function getCourses() {
   const response = await fetch(`${END_POINT}/courses`)
