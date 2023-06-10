@@ -1,5 +1,6 @@
 import "@/styles/globals.css"
 import Navbar from "@/components/Navbar"
+import Footer from "@/components/Footer"
 
 import { getCourses } from "@/api/tutor"
 
@@ -17,8 +18,9 @@ export default async function RootLayout({
   return (
     <html lang="zh-tw">
       <body>
-        <Navbar courses={courses}/>
+        <Navbar courses={courses} />
         {children}
+        <Footer />
       </body>
     </html>
   )
