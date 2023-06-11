@@ -55,3 +55,53 @@ export const getCarouselImages = async () => {
   }).sort()
   return carouselImages
 }
+
+export const getCourses = async () => {
+  const gqlBody = {
+    query: `{
+      products {
+        nodes {
+          ... on SimpleProduct {
+            productId
+            name
+            image {
+              mediaItemUrl
+            }
+            productTags {
+              nodes {
+                name
+                id
+                slug
+              }
+            }
+            price
+            salePrice
+            slug
+            status
+          }
+        }
+      }
+    }`
+  }
+  const response = await fetch(END_POINT, {
+    method: 'POST',
+    headers: headersList,
+    body: JSON.stringify(gqlBody)
+  }).then(res => res.json())
+  const courses = response.data.products.nodes
+    .filter((course: any) =>
+      course.productTags.nodes.map((n: any) => n.slug).includes('course')
+    )
+    .map((course: any) => {
+      return {
+        id: course.productId,
+        name: course.name,
+        status: course.status,
+        price: course.price,
+        salePrice: course.salePrice,
+        image: course.image.mediaItemUrl,
+        slug: course.slug,
+      }
+    })
+  return courses
+}

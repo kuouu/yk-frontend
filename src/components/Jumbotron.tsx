@@ -11,7 +11,6 @@ const Jumbotron = (props: Props) => {
   const { imageSrc } = props
   const nextImg = () => setImgIdx(imageSrc.length !== 0 ? (imgIdx + 1) % imageSrc.length : 0)
   useEffect(() => {
-    console.log(imageSrc)
     const timer = setInterval(nextImg, 5000)
     return () => clearInterval(timer)
   })

@@ -1,3 +1,13 @@
+export interface CourseType {
+  id: number;
+  name: string;
+  status: "any" | "draft" | "pending" | "private" | "publish";
+  price: string;
+  salePrice: string | null;
+  image: string
+  slug: string;
+}
+
 export interface Product {
   id: number;
   name: string;

@@ -13,7 +13,6 @@ const api = new WooCommerceRestApi({
 // fetch all products from WooCommerce //
 export const fetchWooCommerceProducts = async() =>  {
   try {
-    console.log(END_POINT)
     const response = await api.get("products")
     return response.data
   } catch (error: any) {
