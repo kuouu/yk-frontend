@@ -16,10 +16,8 @@ const Navbar = (props: Props) => {
   const { courses } = props;
   const links = [
     { name: '首頁', link: '/' },
-    {
-      name: '精選課程', link: courses
-    },
-    { name: '講義專區', link: '/tag/handouts' },
+    { name: '精選課程', link: '/courses' },
+    { name: '講義專區', link: '/handouts' },
     // { name: '募資專區', link: '/crowdfunding' },
     { name: '購物車', link: '/cart' },
     { name: '我的帳號', link: '/dashboard' },
