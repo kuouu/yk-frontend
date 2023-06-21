@@ -13,7 +13,7 @@ const DashboardPage = () => {
 
   return (
     <div>
-      This is {session.user?.name}'s dashboard
+      This is {session.user?.name}&apos;s dashboard
     </div>
   )
 }
