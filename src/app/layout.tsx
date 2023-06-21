@@ -1,4 +1,5 @@
 import "@/styles/globals.css"
+import Provider from "@/Provider"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 
@@ -18,9 +19,11 @@ export default async function RootLayout({
   return (
     <html lang="zh-tw">
       <body>
-        <Navbar courses={courses} />
-        {children}
-        <Footer />
+        <Provider>
+          <Navbar courses={courses} />
+          {children}
+          <Footer />
+        </Provider>
       </body>
     </html>
   )

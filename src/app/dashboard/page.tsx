@@ -1,10 +1,20 @@
-import React from 'react'
+'use client'
 
-type Props = {}
+import { useSession } from "next-auth/react"
 
-const DashboardPage = (props: Props) => {
+const DashboardPage = () => {
+  const { data: session, status } = useSession({
+    required: true,
+  });
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div>DashboardPage</div>
+    <div>
+      This is {session.user?.name}'s dashboard
+    </div>
   )
 }
 

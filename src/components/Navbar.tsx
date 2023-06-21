@@ -2,6 +2,7 @@
 
 import { useState, CSSProperties } from "react"
 import Image from "next/image"
+import { useSession } from "next-auth/react"
 import { TutorLmsCourse } from "@/types/tutorLmsTypes"
 
 import logo from '../../public/assets/images/logo.png'
@@ -11,16 +12,18 @@ type Props = {
 }
 
 const Navbar = (props: Props) => {
+  const { data: session, status } = useSession()
   const [isOpen, setIsOpen] = useState(false)
   const [sidemenuOpen, setSidemenuOpen] = useState(false)
-  const { courses } = props;
   const links = [
-    { name: '首頁', link: '/' },
-    { name: '精選課程', link: '/courses' },
-    { name: '講義專區', link: '/handouts' },
+    { name: '首頁', link: '/', hide: false },
+    { name: '精選課程', link: '/courses', hide: false },
+    { name: '講義專區', link: '/handouts', hide: false },
     // { name: '募資專區', link: '/crowdfunding' },
-    { name: '購物車', link: '/cart' },
-    { name: '我的帳號', link: '/dashboard' },
+    { name: '購物車', link: '/cart', hide: false },
+    { name: '我的帳號', link: '/dashboard', hide: status === 'unauthenticated' },
+    { name: '登入', link: '/api/auth/signin', hide: status !== 'unauthenticated' },
+    { name: '登出', link: '/api/auth/signout', hide: status === 'unauthenticated' },
   ]
   const toggle = () => setIsOpen(!isOpen)
   return (
@@ -55,7 +58,7 @@ const Navbar = (props: Props) => {
               </li>
             )
           return <li key={link.name}>
-            <a className="block px-4 py-2 hover:text-gray-400" href={link.link}>{link.name}</a>
+            {!link.hide && <a className="block px-4 py-2 hover:text-gray-400" href={link.link}>{link.name}</a>}
           </li>
         }
         )}
@@ -85,7 +88,7 @@ const Navbar = (props: Props) => {
                 </li>
               )
             return <li key={link.name}>
-              <a className="block px-4 py-4 hover:text-gray-400" href={link.link}>{link.name}</a>
+              {!link.hide && <a className="block px-4 py-4 hover:text-gray-400" href={link.link}>{link.name}</a>}
             </li>
           }
           )}
