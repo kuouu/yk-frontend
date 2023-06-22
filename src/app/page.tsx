@@ -3,7 +3,7 @@ import HomeSection from "./HomeSection"
 import TeacherSection from "./TeacherSection"
 
 const getCourses = async () => {
-  const res = await fetch('http://localhost:3000/api/courses', {
+  const res = await fetch(`${process.env.HOST_URL}/api/courses`, {
     headers: {
       'Content-Type': 'application/json'
     }

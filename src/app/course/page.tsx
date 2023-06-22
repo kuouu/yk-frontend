@@ -2,7 +2,7 @@ import Banner from "@/components/Banner"
 import CourseCard from "@/components/CourseCard"
 
 const getData = async () => {
-  const res = await fetch('http://localhost:3000/api/courses', {
+  const res = await fetch(`${process.env.HOST_URL}/api/courses`, {
     headers: {
       'Content-Type': 'application/json'
     }
