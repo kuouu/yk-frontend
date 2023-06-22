@@ -1,9 +1,13 @@
 import Jumbotron from "@/components/Jumbotron"
 import HomeSection from "./HomeSection"
 import TeacherSection from "./TeacherSection"
-import { getCarouselImages, getCourses } from "@/api/graphql"
+import { getCourses } from "@/api/graphql"
 const Home = async () => {
-  const imageSrc = await getCarouselImages()
+  const imageSrc = [
+    'https://yourknowledge.online/wp-content/uploads/2023/01/carousel_1.png',
+    'https://yourknowledge.online/wp-content/uploads/2023/01/carousel_2.png',
+    'https://yourknowledge.online/wp-content/uploads/2023/01/carousel_3.png'
+  ]
   const courses = await getCourses()
   return (
     <div>
