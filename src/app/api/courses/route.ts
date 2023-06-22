@@ -4,7 +4,6 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export async function GET() {
-  console.log('GET /api/courses')
   const posts = await prisma.wp_posts.findMany({
     where: {
       post_type: 'courses',
