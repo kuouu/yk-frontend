@@ -1,4 +1,3 @@
-import ActionPanel from "./ActionPanel";
 import CourseContent from "./CourseContent";
 import CourseInfo from "./CourseInfo";
 import VideoPlayer from "./VideoPlayer";
