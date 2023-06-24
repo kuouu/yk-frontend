@@ -37,9 +37,7 @@ const Navbar = () => {
       {sidemenuOpen &&
         <ul className="block bg-slate-800 lg:hidden" style={sidemenuStyle}>
           <div className='block lg:hidden px-4 py-2 cursor-pointer' onClick={() => setSidemenuOpen(!sidemenuOpen)}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white">
-              <path fill="#fff" d="M3 6a1 1 0 0 1 1-1h16a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1zm0 6a1 1 0 0 1 1-1h16a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1zm1 5a1 1 0 1 0 0 2h16a1 1 0 1 0 0-2H4z" />
-            </svg>
+            <Image src={"assets/icons/menu.svg"} alt="menu" width={24} height={24} />
           </div>
           {links.map((link) => <li key={link.name}>
             {!link.hide && <a className="block px-4 py-4 hover:text-gray-400" href={link.link}>{link.name}</a>}
