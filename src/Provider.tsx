@@ -11,6 +11,11 @@ type Props = {
 
 const theme = createTheme({
   type: 'dark',
+  theme: {
+    borderWeights: {
+      normal: '0px',
+    }
+  }
 })
 
 const provider = ({ children, courseList }: Props) => {

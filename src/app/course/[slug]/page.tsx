@@ -1,34 +1,23 @@
-import CourseContent from "./CourseContent";
+import { customFetch } from "@/customFetch";
+import CourseTopics from "./CourseTopics";
 import CourseInfo from "./CourseInfo";
-import VideoPlayer from "./VideoPlayer";
+import CourseLanding from "./LandingSection";
 
 const getCourseDetails = async (slug: string) => {
-  try {
-    const res = await fetch(`${process.env.HOST_URL}/api/course-detail/${slug}`, {
-      headers: { 'Content-Type': 'application/json' }
-    });
-    if (!res.ok) {
-      throw new Error('Failed to fetch course details');
-    }
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
+  const url = `${process.env.HOST_URL}/api/course-detail/${slug}`;
+  const res = await customFetch(url);
+  return res;
 }
 
 const CoursePage = async ({ params }: { params: { slug: string } }) => {
   const courseDetails = await getCourseDetails(params.slug)
   return (
     <div className="p-8">
-      <h1 className="text-2xl">{courseDetails.title}</h1>
-      <VideoPlayer videoId={courseDetails.videoId} />
-      <div className="flex">
+      <CourseLanding courseDetails={courseDetails} />
+      <div className="flex gap-4">
         <div className="grow">
           <div dangerouslySetInnerHTML={{ __html: courseDetails.content }} />
-          <p>{courseDetails.excerpt}</p>
-          <CourseContent />
+          <CourseTopics topics={courseDetails.topics}/>
         </div>
         <div className="flow-0">
           <div className="sticky top-0">
@@ -38,7 +27,6 @@ const CoursePage = async ({ params }: { params: { slug: string } }) => {
             />
           </div>
         </div>
-
       </div>
     </div>
   )
