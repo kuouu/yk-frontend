@@ -1,4 +1,5 @@
 import "@/styles/globals.css"
+import { customFetch } from "@/customFetch"
 import Provider from "@/Provider"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
@@ -9,19 +10,9 @@ export const metadata = {
 }
 
 const getCourseList = async () => {
-  try {
-    const res = await fetch(`${process.env.HOST_URL}/api/courses`, {
-      headers: { 'Content-Type': 'application/json' }
-    });
-    if (!res.ok) {
-      throw new Error('Failed to fetch courses');
-    }
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
+  const url = `${process.env.HOST_URL}/api/courses`;
+  const res = await customFetch(url);
+  return res;
 };
 
 export default async function RootLayout({

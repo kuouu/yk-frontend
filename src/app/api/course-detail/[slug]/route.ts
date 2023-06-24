@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 
-import { unserialize } from "@/app/utils";
+import { unserialize, formatTime } from "@/app/utils";
 
 const prisma = new PrismaClient();
 
@@ -54,10 +54,7 @@ export async function GET(
       const courseLessons = await Promise.all(
         lessonPosts.map(async (post: any) => {
           const data = unserialize(post.postmeta[0].meta_value);
-          const hours = data.runtime.hours.padStart(2, '0');
-          const minutes = data.runtime.minutes.padStart(2, '0');
-          const seconds = data.runtime.seconds.padStart(2, '0');
-          const duration = `${hours}:${minutes}:${seconds}`;
+          const duration = formatTime(data.runtime);
           return {
             id: Number(post.ID),
             title: post.post_title,

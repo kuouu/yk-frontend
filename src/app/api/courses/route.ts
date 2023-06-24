@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { PrismaClient } from '@prisma/client'
+import { unserialize, formatTime } from '@/app/utils'
 
 const prisma = new PrismaClient()
 
@@ -60,18 +61,12 @@ export async function GET() {
         },
         select: { guid: true }
       })
-      const duration = JSON.parse(
-        postmeta.course_duration
-          .replace(/a:(\d):|s:(\d):|;i/g, '')
-          .replace(/;/g, ',')
-          .replace(/,}/g, '}')
-      )
       return {
         id: Number(post.ID),
         title: post.post_title,
         slug: post.post_name,
         date: new Date(post.post_date),
-        duration: `${duration.hours}h ${duration.minutes}m`,
+        duration: formatTime(unserialize(postmeta.course_duration)),
         author: post.author.display_name,
         price: Number(product_meta?.max_price),
         sale_price: Number(product_meta?.min_price),

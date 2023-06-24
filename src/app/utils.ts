@@ -1,6 +1,5 @@
 export function unserialize(data: string): any {
   const utf8Overhead = function (chr: string): number {
-    // http://phpjs.org/functions/unserialize:571#comment_95906
     const code = chr.charCodeAt(0);
     if (code < 0x0080) {
       return 0;
@@ -147,4 +146,24 @@ export function unserialize(data: string): any {
   };
 
   return _unserialize((data + ''), 0)[2];
+}
+
+export const formatTime = ({
+  hours, minutes, seconds
+}: {
+  hours: number | string, minutes: number | string, seconds: number | string
+}) => {
+  if (typeof hours === 'string') {
+    hours = parseInt(hours, 10);
+  }
+  if (typeof minutes === 'string') {
+    minutes = parseInt(minutes, 10);
+  }
+  if (typeof seconds === 'string') {
+    seconds = parseInt(seconds, 10);
+  }
+  const h = hours < 10 ? '0' + hours : hours;
+  const m = minutes < 10 ? '0' + minutes : minutes;
+  const s = seconds < 10 ? '0' + seconds : seconds;
+  return `${h}:${m}:${s}`;
 }
