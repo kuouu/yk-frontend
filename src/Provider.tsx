@@ -20,7 +20,7 @@ const theme = createTheme({
 
 const provider = ({ children, courseList }: Props) => {
   return (
-    <NextUIProvider disableBaseline={true} theme={theme}>
+    <NextUIProvider theme={theme}>
       <SessionProvider>
         <AppContext.Provider value={courseList}>
           {children}
