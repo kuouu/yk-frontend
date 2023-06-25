@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 
-import { unserialize, formatTime } from "@/app/utils";
+import { unserialize, formatTime } from "@/utils";
 
 const prisma = new PrismaClient();
 

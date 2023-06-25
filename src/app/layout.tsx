@@ -1,8 +1,8 @@
 import "@/styles/globals.css"
 import { customFetch } from "@/customFetch"
 import Provider from "@/Provider"
-import Navbar from "@/components/Navbar"
-import Footer from "@/components/Footer"
+import Navbar from "./Navbar"
+import Footer from "./Footer"
 
 export const metadata = {
   title: '你的知識',

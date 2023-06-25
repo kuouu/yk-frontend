@@ -1,6 +1,6 @@
 'use client'
 
-import Jumbotron from "@/components/Jumbotron"
+import Jumbotron from "./Jumbotron"
 import HomeSection from "./HomeSection"
 import TeacherSection from "./TeacherSection"
 
