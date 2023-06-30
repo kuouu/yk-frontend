@@ -20,7 +20,7 @@ const theme = createTheme({
 
 const Provider = ({ children, courseList }: Props) => {
   const { isBrowser } = useSSR()
-  return isBrowser && (
+  return isBrowser ? (
       <NextUIProvider theme={theme}>
         <SessionProvider>
           <AppContext.Provider value={courseList}>
@@ -28,7 +28,7 @@ const Provider = ({ children, courseList }: Props) => {
           </AppContext.Provider>
         </SessionProvider>
       </NextUIProvider>
-  )
+  ) : <></>
 }
 
 export default Provider
