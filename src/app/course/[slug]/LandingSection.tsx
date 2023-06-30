@@ -33,7 +33,7 @@ const CourseLanding = ({ courseDetails }: Props) => {
         }}>
           {courseDetails.excerpt}
         </Text>
-        <Text css={{ textAlign: 'end' }}>{course?.student_count} 位學員</Text>
+        <Text css={{ textAlign: 'end' }}>{course?.student_count} 人已購買</Text>
       </Col>
     </Row>
   )
