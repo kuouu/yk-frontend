@@ -10,7 +10,6 @@ type Props = {
 const CourseLanding = ({ courseDetails }: Props) => {
   const courseList = useAppContext()
   const course = courseList.find((course) => course.id === courseDetails.id)
-  console.log(course)
   return (
     <Row wrap="wrap" justify="space-between" align="center">
       <div style={{ width: '58%' }}>

@@ -16,16 +16,13 @@ const CoursePage = async ({ params }: { params: { slug: string } }) => {
       <CourseLanding courseDetails={courseDetails} />
       <div className="flex gap-4">
         <div className="grow">
-          <div dangerouslySetInnerHTML={{ __html: courseDetails.content }} />
-          <CourseTopics topics={courseDetails.topics}/>
+          <div dangerouslySetInnerHTML={{
+            __html: courseDetails.content.replace(/(&nbsp;)+/g, ' ')
+          }} />
+          <CourseTopics topics={courseDetails.topics} />
         </div>
         <div className="flow-0">
-          <div className="sticky top-0">
-            <CourseInfo
-              material_includes={courseDetails.material_includes}
-              target_audience={courseDetails.target_audience}
-            />
-          </div>
+          <CourseInfo courseDetails={courseDetails} />
         </div>
       </div>
     </div>
