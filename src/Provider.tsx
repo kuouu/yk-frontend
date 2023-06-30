@@ -1,7 +1,7 @@
 'use client'
 
 import { SessionProvider } from 'next-auth/react'
-import { NextUIProvider, createTheme } from '@nextui-org/react';
+import { NextUIProvider, createTheme, useSSR } from '@nextui-org/react';
 import { AppContext } from './appContext';
 
 type Props = {
@@ -18,16 +18,17 @@ const theme = createTheme({
   }
 })
 
-const provider = ({ children, courseList }: Props) => {
-  return (
-    <NextUIProvider theme={theme}>
-      <SessionProvider>
-        <AppContext.Provider value={courseList}>
-          {children}
-        </AppContext.Provider>
-      </SessionProvider>
-    </NextUIProvider>
+const Provider = ({ children, courseList }: Props) => {
+  const { isBrowser } = useSSR()
+  return isBrowser && (
+      <NextUIProvider theme={theme}>
+        <SessionProvider>
+          <AppContext.Provider value={courseList}>
+            {children}
+          </AppContext.Provider>
+        </SessionProvider>
+      </NextUIProvider>
   )
 }
 
-export default provider
+export default Provider
