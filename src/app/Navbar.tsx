@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react"
 
 const Nav = () => {
   const { data: session, status } = useSession()
-  const currentPath = window.location.pathname
+  const currentPath = typeof window !== 'undefined' ? window.location.pathname : ''
   const links = [
     { name: '首頁', link: '/', hide: false },
     { name: '精選課程', link: '/course', hide: false },
