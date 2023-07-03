@@ -9,16 +9,17 @@ const prisma = new PrismaClient()
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
-      name: "Password",
+      name: "Credential",
       credentials: {
         account: {
           label: "Account",
           type: "text",
-          placeholder: "Email or Username"
+          placeholder: "輸入信箱或使用者名稱"
         },
         password: {
           label: "Password",
-          type: "password"
+          type: "password",
+          placeholder: "輸入密碼"
         },
       },
       async authorize(credentials) {
