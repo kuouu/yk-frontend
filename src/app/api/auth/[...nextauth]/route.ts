@@ -107,6 +107,7 @@ const handler = NextAuth({
         where: { user_email: session.user.email || "" }
       })
       session.user.id = user?.ID.toString() || ""
+      session.user.name = user?.display_name || ""
       return session;
     },
   },
