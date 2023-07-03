@@ -1,5 +1,5 @@
 import "@/styles/globals.css"
-import { customFetch } from "@/customFetch"
+import { customFetch } from "@/utils/customFetch"
 import Provider from "@/Provider"
 import Navbar from "./Navbar"
 import Footer from "./Footer"

@@ -1,4 +1,4 @@
-import { customFetch } from "@/customFetch";
+import { customFetch } from "@/utils/customFetch";
 import CourseTopics from "./CourseTopics";
 import CourseInfo from "./CourseInfo";
 import CourseLanding from "./LandingSection";
