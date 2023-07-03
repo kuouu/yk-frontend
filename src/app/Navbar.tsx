@@ -3,6 +3,8 @@
 import { Link, Navbar } from "@nextui-org/react"
 import Image from "next/image"
 import { useSession } from "next-auth/react"
+import logo from 'public/assets/icons/logo.svg'
+import logo_word from 'public/assets/icons/logo_word.svg'
 
 const Nav = () => {
   const { data: session, status } = useSession()
@@ -23,8 +25,8 @@ const Nav = () => {
         css={{ cursor: 'pointer' }}
         onClick={() => location.href = '/'}
       >
-        <Image src={"assets/icons/logo.svg"} alt="logo" width={48} height={48} />
-        <Image src={"assets/icons/logo_word.svg"} alt="logo" width={108} height={48} />
+        <Image src={logo} alt="logo" width={48} height={48} />
+        <Image src={logo_word} alt="logo" width={108} height={48} />
       </Navbar.Brand>
       {/* desktop menu */}
       <Navbar.Content hideIn={'xs'}>
