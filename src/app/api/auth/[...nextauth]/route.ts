@@ -48,6 +48,59 @@ const handler = NextAuth({
     })
   ],
   callbacks: {
+    async signIn({ user, account, profile }) {
+      if (account?.provider === 'google') {
+        // check if user exist in the database
+        const dbUser = await prisma.wp_users.findFirst({ 
+          where: { user_email: user.email || "" } 
+        });
+        
+        // If not exist, create user
+        if (!dbUser) {
+          const username = user.email?.split('@')[0] || "";
+          const newUser = await prisma.wp_users.create({
+            data: {
+              user_login: username,
+              user_nicename: username,
+              user_email: user.email || "",
+              user_registered: new Date(),
+              display_name: user.name || "",
+            },
+          });
+          
+          // Assuming the user successfully created, add this user to wp_social_users
+          await prisma.wp_social_users.create({
+            data: {
+              ID: Number(newUser.ID),
+              type: 'google',
+              identifier: account.providerAccountId,
+              register_date: new Date(),
+              link_date: new Date(),
+            }
+          });
+        } else {
+          // If user exists, check if the user has logged in using Next Social Login
+          const socialUser = await prisma.wp_social_users.findFirst({
+            where: { ID: Number(dbUser.ID), type: 'google' }
+          });
+
+          // If the user hasn't logged in with Next Social Login, add the record
+          if (!socialUser) {
+            await prisma.wp_social_users.create({
+              data: {
+                ID: Number(dbUser.ID),
+                type: 'google',
+                identifier: account.providerAccountId,
+                register_date: new Date(),
+                link_date: new Date(),
+              }
+            });
+          }
+        }
+      }
+
+      return true;
+    },
     session: async ({ session }) => {
       const user = await prisma.wp_users.findFirst({
         where: { user_email: session.user.email || "" }
