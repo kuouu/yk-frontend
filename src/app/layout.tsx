@@ -24,6 +24,7 @@ export default async function RootLayout({
   return (
     <html lang="zh-tw">
       <body>
+        <div className='gradient' />
         <Provider courseList={courseList}>
           <Navbar />
           {children}
