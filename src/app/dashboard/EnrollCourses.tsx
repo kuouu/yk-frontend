@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Col, Divider, Row, Text } from "@nextui-org/react"
+import { Col, Divider, Row, Text, Image } from "@nextui-org/react"
 import { useSession } from 'next-auth/react';
 import { customFetch } from "@/utils/customFetch"
 import { useAppContext } from "@/appContext";
@@ -29,8 +29,16 @@ const EnrollCourses = () => {
   return (
     <Col>
       <Text h3>我的課程</Text>
-      <Divider />
-      <Row>
+      <Divider css={{ margin: '10px 0' }} />
+      <Row
+        gap={2}
+        css={{
+          margin: '0',
+          paddingTop: '10px',
+          overflowX: 'scroll',
+          '&::-webkit-scrollbar': { display: 'none' }
+        }}
+      >
         {courses
           .filter((course: CourseListType) => {
             const isEnrolled = enrolledId.find((enrolledCourse: any) =>
@@ -40,8 +48,21 @@ const EnrollCourses = () => {
           })
           .map((course: CourseListType) => {
             return (
-              <Col key={course.id}>
-                <Text h4>{course.title}</Text>
+              <Col
+                key={course.id}
+                css={{ width: 'max-content', cursor: 'pointer' }}
+                onClick={() => location.href = `/course/${course.slug}`}
+              >
+                <Image
+                  src={course.image}
+                  alt={course.title}
+                  width={300}
+                  height={200}
+                />
+                <Col css={{ marginTop: '10px', padding: 0 }}>
+                  <Text size='$lg' css={{margin: 0}}>{course.title}</Text>
+                  <p className='text-gray-500'>by {course.author}</p>
+                </Col>
               </Col>
             )
           })}
