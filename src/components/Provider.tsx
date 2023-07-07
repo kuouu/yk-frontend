@@ -2,7 +2,7 @@
 
 import { SessionProvider } from 'next-auth/react'
 import { NextUIProvider, createTheme, useSSR } from '@nextui-org/react';
-import { AppContext } from './appContext';
+import { AppContext } from '../appContext';
 
 type Props = {
   children: React.ReactNode,
