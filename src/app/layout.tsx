@@ -1,6 +1,8 @@
 import "@/styles/globals.css"
 import { customFetch } from "@/utils/customFetch"
-import Provider from "@/components/Provider"
+import Providers from "@/components/Provider"
+import { store } from "@/store"
+import { setCourseList } from "@/store/courseSlice"
 import Navbar from "./Navbar"
 import Footer from "./Footer"
 
@@ -21,15 +23,16 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const courseList = await getCourseList();
+  store.dispatch(setCourseList(courseList));
   return (
     <html lang="zh-tw">
       <body>
         <div className='gradient' />
-        <Provider courseList={courseList}>
+        <Providers>
           <Navbar />
           {children}
           <Footer />
-        </Provider>
+        </Providers>
       </body>
     </html>
   )

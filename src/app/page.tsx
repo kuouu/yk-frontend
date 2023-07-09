@@ -1,10 +1,8 @@
-'use client'
-
+import { store } from "@/store"
 import Jumbotron from "./Jumbotron"
 import HomeSection from "./HomeSection"
 import TeacherSection from "./TeacherSection"
-
-import { useAppContext } from "@/appContext"
+import { courseListSelector } from "@/store/courseSlice"
 
 const Home = () => {
   const imageSrc = [
@@ -12,11 +10,11 @@ const Home = () => {
     'https://yourknowledge.online/wp-content/uploads/2023/01/carousel_2.png',
     'https://yourknowledge.online/wp-content/uploads/2023/01/carousel_3.png'
   ]
-  const courses = useAppContext()
+  const courseList = courseListSelector(store.getState().server)
   return (
     <div>
       <Jumbotron imageSrc={imageSrc} />
-      <HomeSection title={'熱門課程'} courses={courses} />
+      <HomeSection title={'熱門課程'} courses={courseList} />
       <TeacherSection />
     </div>
   )
