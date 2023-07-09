@@ -2,10 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import { Col, Divider, Row, Text, Image } from "@nextui-org/react"
-import { useSession } from 'next-auth/react';
 import { customFetch } from "@/utils/customFetch"
-import { useAppContext } from "@/appContext";
-
+import { store } from '@/store';
+import { courseListSelector } from '@/store/courseSlice';
 
 const getEnrolledList = async (userId: string | undefined) => {
   if (!userId) return []
@@ -14,11 +13,9 @@ const getEnrolledList = async (userId: string | undefined) => {
   return res;
 };
 
-const EnrollCourses = () => {
+const EnrollCourses = ({ userId }: { userId: string }) => {
   const [enrolledId, setEnrolledId] = useState<string[]>([]);
-  const { data: session } = useSession();
-  const userId = session?.user?.id;
-  const courses = useAppContext();
+  const courses = courseListSelector(store.getState().server)
   useEffect(() => {
     const getEnrolled = async () => {
       const enrolledList = await getEnrolledList(userId);
@@ -60,7 +57,7 @@ const EnrollCourses = () => {
                   height={200}
                 />
                 <Col css={{ marginTop: '10px', padding: 0 }}>
-                  <Text size='$lg' css={{margin: 0}}>{course.title}</Text>
+                  <Text size='$lg' css={{ margin: 0 }}>{course.title}</Text>
                   <p className='text-gray-500'>by {course.author}</p>
                 </Col>
               </Col>

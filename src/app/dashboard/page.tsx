@@ -32,7 +32,7 @@ const DashboardPage = () => {
         <Sidebar />
       </Grid>
       <Grid xs={8}>
-        <EnrollCourses />
+        <EnrollCourses userId={session.user.id}/>
       </Grid>
     </Grid.Container>
   )

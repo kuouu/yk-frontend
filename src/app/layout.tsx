@@ -5,6 +5,7 @@ import { store } from "@/store"
 import { setCourseList } from "@/store/courseSlice"
 import Navbar from "./Navbar"
 import Footer from "./Footer"
+import Preloader from "./Preloader"
 
 export const metadata = {
   title: '你的知識',
@@ -27,6 +28,7 @@ export default async function RootLayout({
   return (
     <html lang="zh-tw">
       <body>
+        <Preloader courseList={courseList}/>
         <div className='gradient' />
         <Providers>
           <Navbar />
