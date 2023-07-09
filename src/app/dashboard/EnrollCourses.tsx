@@ -8,7 +8,7 @@ import { courseListSelector } from '@/store/courseSlice';
 
 const getEnrolledList = async (userId: string | undefined) => {
   if (!userId) return []
-  const url = `/api/enrolled-courses/${userId}`;
+  const url = `/api/enrolled-courses?id=${userId}`;
   const res = await customFetch(url);
   return res;
 };
