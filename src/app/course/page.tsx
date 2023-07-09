@@ -1,13 +1,10 @@
-'use client'
-
 import Banner from "@/components/Banner"
 import CourseCard from "@/components/CourseCard"
-
-import { useAppContext } from "@/appContext"
+import { store } from "@/store"
+import { courseListSelector } from "@/store/courseSlice"
 
 const CourseList = () => {
-  const courses = useAppContext()
-
+  const courses = courseListSelector(store.getState().server)
   return (
     <div>
       <Banner title={'精選課程'} />

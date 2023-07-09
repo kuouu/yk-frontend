@@ -1,14 +1,11 @@
 'use client'
 
-import { Container, Collapse, Table, Text, useSSR } from "@nextui-org/react"
+import { Container, Collapse, Table, Text } from "@nextui-org/react"
+import { useCourseContext } from "./CourseContext"
 
-type Props = {
-  topics: any[]
-}
-
-const CourseTopics = ({ topics }: Props) => {
-  const { isBrowser } = useSSR()
-  return isBrowser ? (
+const CourseTopics = () => {
+  const { topics } = useCourseContext()
+  return (
     <Container css={{ padding: 0 }}>
       <Text h3>課程內容</Text>
       <Collapse.Group>
@@ -38,7 +35,7 @@ const CourseTopics = ({ topics }: Props) => {
         ))}
       </Collapse.Group>
     </Container>
-  ) : <></>
+  )
 }
 
 export default CourseTopics

@@ -1,3 +1,5 @@
+type CourseType = CourseListType & CourseDetailType;
+
 type CourseListType = {
   id: number,
   title: string,
@@ -12,4 +14,24 @@ type CourseListType = {
 }
 
 type CourseDetailType = {
+  id: number,
+  title: string,
+  content: string,
+  excerpt: string,
+  videoId: string,
+  material_includes: string,
+  target_audience: string,
+  topics: CourseTopicType[],
+}
+
+type CourseTopicType = {
+  id: number,
+  title: string,
+  lessons: CourseLessonType[],
+}
+
+type CourseLessonType = {
+  id: number,
+  title: string,
+  duration: string,
 }
