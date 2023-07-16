@@ -4,8 +4,7 @@ import courseListReducer from "./courseSlice";
 
 export const store = configureStore({
   reducer: {
-    server: courseListReducer,
-    // client: clientDataReducer,
+    courses: courseListReducer,
   },
 });
 

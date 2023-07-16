@@ -1,14 +1,13 @@
-import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
+import { RootState } from ".";
 
 export interface CourseState {
   courseList: CourseListType[];
 }
 
-const courseAdapter = createEntityAdapter<CourseState>();
-
-const initialState: CourseState = courseAdapter.getInitialState({
+const initialState: CourseState = {
   courseList: [],
-});
+};
 
 export const courseSlice = createSlice({
   name: 'courseList',
@@ -23,7 +22,11 @@ export const courseSlice = createSlice({
 export const { setCourseList } = courseSlice.actions;
 export default courseSlice.reducer;
 
-export const courseListSelector = (state: CourseState) => state.courseList;
+export const courseList = createSelector(
+  (state: RootState) => state.courses.courseList,
+  list => list
+)
+
 export const selectCourseById = (state: CourseState, courseId: number) => {
   return state.courseList.find((course) => course.id === courseId);
 }

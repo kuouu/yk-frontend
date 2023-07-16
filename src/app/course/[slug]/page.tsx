@@ -16,7 +16,7 @@ const getCourseDetails = async (slug: string) => {
 
 const CoursePage = async ({ params }: { params: { slug: string } }) => {
   const courseDetails = await getCourseDetails(params.slug)
-  const course = selectCourseById(store.getState().server, courseDetails.id)
+  const course = selectCourseById(store.getState().courses, courseDetails.id)
   return (
     <CourseContextProvider course={{ ...course, ...courseDetails }}>
       <div className="p-8">

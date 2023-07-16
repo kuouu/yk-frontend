@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react'
 import { Col, Divider, Row, Text, Image } from "@nextui-org/react"
 import { customFetch } from "@/utils/customFetch"
-import { store } from '@/store';
-import { courseListSelector } from '@/store/courseSlice';
+import { useAppSelector } from "@/store/hook"
+import { courseList } from "@/store/courseSlice"
 
 const getEnrolledList = async (userId: string | undefined) => {
   if (!userId) return []
@@ -15,7 +15,7 @@ const getEnrolledList = async (userId: string | undefined) => {
 
 const EnrollCourses = ({ userId }: { userId: string }) => {
   const [enrolledId, setEnrolledId] = useState<string[]>([]);
-  const courses = courseListSelector(store.getState().server)
+  const courses = useAppSelector(courseList);
   useEffect(() => {
     const getEnrolled = async () => {
       const enrolledList = await getEnrolledList(userId);
