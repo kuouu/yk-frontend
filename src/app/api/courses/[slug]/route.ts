@@ -11,23 +11,45 @@ export async function GET(
   { params }: { params: { slug: string } }
 ) {
   const course = await prisma.wp_posts.findFirst({
-    where: {
-      post_name: params.slug
-    },
+    where: { post_name: params.slug },
     select: {
       ID: true,
       post_title: true,
       post_content: true,
-      post_excerpt: true
+      post_excerpt: true,
+      postmeta: {
+        where: {
+          OR: [
+            { meta_key: '_video' },
+            { meta_key: '_tutor_course_target_audience' },
+            { meta_key: '_tutor_course_material_includes' }
+          ]
+        },
+        select: {
+          meta_key: true,
+          meta_value: true
+        }
+      }
     }
   });
-  const TUTOR_API = `${process.env.END_POINT}/wp-json/tutor/v1`;
-  const id = Number(course?.ID);
-  const tutorDetail = await fetch(`${TUTOR_API}/course-detail/${id}`)
-    .then(res => res.json());
+  const courseMeta = course?.postmeta.reduce((acc, item) => {
+    const key = String(item.meta_key).replace('_', '');
+    let value = String(item.meta_value);
+    if (key === 'video') {
+      value = unserialize(value);
+    }
+    return {
+      ...acc,
+      [key]: value,
+    };
+  }, {
+    video: { source_youtube: "" },
+    tutor_course_material_includes: "",
+    tutor_course_target_audience: ""
+  });
   const topicPosts = await prisma.wp_posts.findMany({
     where: {
-      post_parent: id,
+      post_parent: course?.ID,
       post_type: 'topics'
     },
     select: {
@@ -77,9 +99,9 @@ export async function GET(
     title: course?.post_title,
     content: course?.post_content,
     excerpt: course?.post_excerpt,
-    videoId: tutorDetail.data.video[0].source_youtube.split('v=')[1],
-    material_includes: tutorDetail.data.course_material_includes[0],
-    target_audience: tutorDetail.data.course_target_audience[0],
+    videoId: courseMeta?.video.source_youtube.split('v=')[1],
+    material_includes: courseMeta?.tutor_course_material_includes,
+    target_audience: courseMeta?.tutor_course_target_audience,
     topics: courseTopics
   });
 }

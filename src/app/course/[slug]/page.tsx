@@ -9,7 +9,7 @@ import { selectCourseById } from "@/store/courseSlice";
 import CourseContextProvider from "./CourseContext";
 
 const getCourseDetails = async (slug: string) => {
-  const url = `${process.env.HOST_URL}/api/course-detail/${slug}`;
+  const url = `${process.env.HOST_URL}/api/courses/${slug}`;
   const res = await customFetch(url);
   return res;
 }
