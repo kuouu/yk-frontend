@@ -3,9 +3,9 @@ import { customFetch } from "@/utils/customFetch"
 import Providers from "@/components/Provider"
 import { store } from "@/store"
 import { setCourseList } from "@/store/courseSlice"
-import Navbar from "./Navbar"
-import Footer from "./Footer"
-import Preloader from "./Preloader"
+import Navbar from "./(home)/Navbar"
+import Footer from "./(home)/Footer"
+import Preloader from "./(home)/Preloader"
 
 export const metadata = {
   title: '你的知識',
