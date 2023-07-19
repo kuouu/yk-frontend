@@ -28,9 +28,9 @@ export default async function RootLayout({
   return (
     <html lang="zh-tw">
       <body>
-        <Preloader courseList={courseList}/>
         <div className='gradient' />
         <Providers>
+          <Preloader courseList={courseList}/>
           <Navbar />
           {children}
           <Footer />
