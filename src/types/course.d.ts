@@ -34,4 +34,7 @@ type CourseLessonType = {
   id: number,
   title: string,
   duration: string,
+  content?: string,
+  modified?: string,
+  videoId?: string,
 }

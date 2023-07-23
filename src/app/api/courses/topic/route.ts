@@ -63,5 +63,5 @@ export async function GET(req: Request) {
       };
     })
   );
-  return NextResponse.json(courseTopics);
+  return NextResponse.json(courseTopics[0]);
 }
