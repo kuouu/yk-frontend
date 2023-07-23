@@ -2,20 +2,14 @@
 
 import { Text, Row, Col } from "@nextui-org/react"
 import { useCourseContext } from "./CourseContext"
+import YouTubeVideoPlayer from "@/components/YouTubeVideoPlayer"
 
 const CourseLanding = () => {
   const course = useCourseContext()
   return (
     <Row wrap="wrap" justify="space-between" align="center">
       <div style={{ width: '58%' }}>
-        <iframe
-          width="100%"
-          height="360"
-          src={`https://www.youtube.com/embed/${course.videoId}`}
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        ></iframe>
+        <YouTubeVideoPlayer url={course.videoId} />
       </div>
       <Col css={{ width: '38%' }}>
         <h1 className="text-4xl">{course.title}</h1>

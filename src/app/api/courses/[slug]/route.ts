@@ -99,7 +99,7 @@ export async function GET(
     title: course?.post_title,
     content: course?.post_content,
     excerpt: course?.post_excerpt,
-    videoId: courseMeta?.video.source_youtube.split('v=')[1],
+    videoId: courseMeta?.video.source_youtube,
     material_includes: courseMeta?.tutor_course_material_includes,
     target_audience: courseMeta?.tutor_course_target_audience,
     topics: courseTopics
