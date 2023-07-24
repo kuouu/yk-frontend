@@ -18,7 +18,7 @@ const layout = async ({ params, children }: Props) => {
   return (
     <div>
       <Preloader topic={topicDetails} />
-      {children}
+      {topicDetails ? children : null}
     </div>
   )
 }
