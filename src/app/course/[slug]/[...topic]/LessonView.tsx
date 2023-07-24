@@ -1,6 +1,6 @@
 'use client';
 
-import { Text, Col, Row } from '@nextui-org/react';
+import { Text, Col, Loading } from '@nextui-org/react';
 import { useAppSelector } from "@/store/hook";
 import { selectLessonById } from '@/store/topicSlice';
 import YouTubeVideoPlayer from '@/components/YouTubeVideoPlayer';
@@ -12,6 +12,11 @@ type Props = {
 const LessonView = ({ lessonId }: Props) => {
   const lesson = useAppSelector(state =>
     selectLessonById(state, lessonId)
+  )
+  if(lesson === undefined) return (
+    <Col>
+      <Loading color="primary" />
+    </Col>
   )
   return (
     <Col>
