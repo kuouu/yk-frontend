@@ -30,7 +30,7 @@ export default async function RootLayout({
       <body>
         <div className='gradient' />
         <Providers>
-          <Preloader courseList={courseList}/>
+          <Preloader courseList={courseList} />
           <Navbar />
           {children}
           <Footer />

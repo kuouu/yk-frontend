@@ -25,4 +25,5 @@
   filter: blur(100px) saturate(150%);
   right: 40px;
   opacity: 0.15;
+  pointer-events: none;
 }
