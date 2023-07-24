@@ -12,8 +12,8 @@ const Nav = () => {
   const links = [
     { name: '首頁', link: '/', hide: false },
     { name: '精選課程', link: '/course', hide: false },
-    { name: '講義專區', link: '/handouts', hide: false },
-    { name: '購物車', link: '/cart', hide: false },
+    // { name: '講義專區', link: '/handouts', hide: false },
+    // { name: '購物車', link: '/cart', hide: false },
     { name: '我的帳號', link: '/dashboard', hide: status === 'unauthenticated' },
     { name: '登入', link: '/api/auth/signin', hide: status !== 'unauthenticated' },
     { name: '登出', link: '/api/auth/signout', hide: status === 'unauthenticated' },
