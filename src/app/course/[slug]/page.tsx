@@ -17,7 +17,7 @@ const CoursePage = () => {
   const isEnrolled = useAppSelector(state =>
     state.user.enrolledCourses.includes(course.id)
   )
-  if (isLogin && isEnrolled) {
+  if (isLogin && isEnrolled && course.slug) {
     const firstTopic = course.topics[0]
     const firstLesson = firstTopic.lessons[0]
     redirect(`/course/${course.slug}/${firstTopic.id}/${firstLesson.id}`)

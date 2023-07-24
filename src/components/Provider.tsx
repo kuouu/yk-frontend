@@ -3,7 +3,8 @@
 import { SessionProvider } from 'next-auth/react'
 import { NextUIProvider, createTheme, useSSR } from '@nextui-org/react';
 import { Provider } from 'react-redux';
-import { store } from '@/store';
+import { store, persistor } from '@/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 type Props = {
   children: React.ReactNode,
@@ -24,7 +25,9 @@ const Providers = ({ children }: Props) => {
     <NextUIProvider theme={theme}>
       <SessionProvider>
         <Provider store={store}>
-          {children}
+          <PersistGate loading={null} persistor={persistor}>
+            {children}
+          </PersistGate>
         </Provider>
       </SessionProvider>
     </NextUIProvider>
