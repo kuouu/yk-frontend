@@ -1,20 +1,19 @@
 'use client'
 
 import { Card, User, Text, Link } from "@nextui-org/react";
-import { useSession } from 'next-auth/react';
+import { useAppSelector } from "@/store/hook";
 
 const Sidebar = () => {
-  const { data: session } = useSession();
-  const user = session?.user;
+  const user = useAppSelector(state => state.user)
 
   return (
     <aside>
       <Card variant="flat" css={{border: 'none'}}>
         <Card.Header>
           <User
-            src={user?.image || ""}
-            name={user?.name || ""}
-            description={user?.email || ""}
+            src={user.image || ""}
+            name={user.username || ""}
+            description={user.email || ""}
             size="xl"
             zoomed
           />

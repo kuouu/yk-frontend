@@ -1,28 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { Col, Divider, Row, Text, Image } from "@nextui-org/react"
-import { customFetch } from "@/utils/customFetch"
 import { useAppSelector } from "@/store/hook"
 import { courseList } from "@/store/courseSlice"
 
-const getEnrolledList = async (userId: string | undefined) => {
-  if (!userId) return []
-  const url = `/api/enrolled-courses?id=${userId}`;
-  const res = await customFetch(url);
-  return res;
-};
-
-const EnrollCourses = ({ userId }: { userId: string }) => {
-  const [enrolledId, setEnrolledId] = useState<string[]>([]);
+const EnrollCourses = () => {
   const courses = useAppSelector(courseList);
-  useEffect(() => {
-    const getEnrolled = async () => {
-      const enrolledList = await getEnrolledList(userId);
-      setEnrolledId(enrolledList);
-    }
-    getEnrolled();
-  }, [userId])
+  const enrolledId = useAppSelector(state => state.user.enrolledCourses)
   return (
     <Col>
       <Text h3>我的課程</Text>
@@ -38,8 +22,8 @@ const EnrollCourses = ({ userId }: { userId: string }) => {
       >
         {courses
           .filter((course: CourseListType) => {
-            const isEnrolled = enrolledId.find((enrolledCourse: any) =>
-              enrolledCourse.id === course.id
+            const isEnrolled = enrolledId.find((enrolledCourseId: Number) =>
+              enrolledCourseId === course.id
             )
             return isEnrolled
           })

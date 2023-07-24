@@ -1,25 +1,17 @@
 'use client'
 
-import { useSession } from "next-auth/react"
-import { Loading, Grid } from "@nextui-org/react";
+import { Grid } from "@nextui-org/react";
 import Sidebar from "./Sidebar";
 import EnrollCourses from "./EnrollCourses";
+import { redirect } from "next/navigation";
+import { useAppSelector } from "@/store/hook";
+import { selectIsLogin } from "@/store/userSlice";
 
 const DashboardPage = () => {
-  const { data: session, status } = useSession({
-    required: true,
-  });
+  const isLogin = useAppSelector(selectIsLogin);
 
-  if (status === "loading") {
-    return (
-      <Grid.Container
-        alignItems="center"
-        justify="center"
-        css={{ height: '80vh' }}
-      >
-        <Loading>Loading</Loading>
-      </Grid.Container>
-    )
+  if (!isLogin) {
+    redirect('/')
   }
 
   return (
@@ -32,7 +24,7 @@ const DashboardPage = () => {
         <Sidebar />
       </Grid>
       <Grid xs={8}>
-        <EnrollCourses userId={session.user.id}/>
+        <EnrollCourses />
       </Grid>
     </Grid.Container>
   )
