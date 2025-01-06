@@ -21,6 +21,7 @@ const CourseCard = (props: Props) => {
           src={course.image}
           alt={course.title}
           width={300}
+          height={200}
         />
       </Card.Header>
       <Card.Body>
