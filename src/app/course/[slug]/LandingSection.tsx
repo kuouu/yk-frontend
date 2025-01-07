@@ -1,30 +1,38 @@
 'use client'
 
-import { Text, Row, Col } from "@nextui-org/react"
 import { useCourseContext } from "./CourseContext"
 import YouTubeVideoPlayer from "@/components/YouTubeVideoPlayer"
 
 const CourseLanding = () => {
   const course = useCourseContext()
   return (
-    <Row wrap="wrap" justify="space-between" align="center">
+    <div style={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    }}>
       <div style={{ width: '58%' }}>
         <YouTubeVideoPlayer url={course.videoId} />
       </div>
-      <Col css={{ width: '38%' }}>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: '38%'
+      }}>
         <h1 className="text-4xl">{course.title}</h1>
-        <Text>by {course?.author}</Text>
-        <Text css={{
+        <p>by {course?.author}</p>
+        <p style={{
           display: '-webkit-box',
           WebkitBoxOrient: 'vertical',
           overflow: 'hidden',
           WebkitLineClamp: 3
         }}>
           {course.excerpt}
-        </Text>
-        <Text css={{ textAlign: 'end' }}>{course?.student_count} 人已購買</Text>
-      </Col>
-    </Row>
+        </p>
+        <p style={{ textAlign: 'end' }}>{course?.student_count} 人已購買</p>
+      </div>
+    </div>
   )
 }
 

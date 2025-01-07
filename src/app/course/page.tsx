@@ -10,7 +10,7 @@ const CourseList = () => {
   return (
     <div>
       <Banner title={'精選課程'} />
-      <div className="m-8 gap-8 grid grid-cols-3">
+      <div className="m-8 gap-8 grid grid-cols-1 sm:grid-cols-3">
         {courses.map((course: CourseListType) => (
           <CourseCard key={course.id} course={course} />
         ))}

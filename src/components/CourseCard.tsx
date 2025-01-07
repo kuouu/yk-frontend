@@ -1,6 +1,12 @@
 'use client'
 
-import { Card, Row } from "@nextui-org/react"
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Image,
+} from "@nextui-org/react"
 
 type Props = {
   course: CourseListType
@@ -10,33 +16,31 @@ const CourseCard = (props: Props) => {
   const { course } = props
   return (
     <Card
-      css={{ border: 'none', width: '300px' }}
+      className='border-none'
       isPressable
       isHoverable
-      variant="shadow"
       onPress={() => location.href = `/course/${course.slug}`}
     >
-      <Card.Header>
-        <Card.Image
+      <CardHeader className='flex justify-center'>
+        <Image
           src={course.image}
           alt={course.title}
-          width={300}
+          width='100%'
           height={200}
+          className="object-cover"
         />
-      </Card.Header>
-      <Card.Body>
-        <Row justify="space-between">
+      </CardHeader>
+      <CardBody>
+        <div className="flex justify-between gap-2">
           <h3 className='text-xl font-bold'>{course.title}</h3>
-          <p className='text-red-500 text-lg'>NT$ {course.price}</p>
-        </Row>
+          <p className='text-red-500 text-lg min-w-max'>NT$ {course.price}</p>
+        </div>
         <p className='text-gray-500'>by {course.author}</p>
-      </Card.Body>
-      <Card.Footer>
-        <Row justify="space-between">
-          <p className='text-gray-500'>{course.duration}</p>
-          <p className='text-gray-500'>{course.student_count} 已註冊</p>
-        </Row>
-      </Card.Footer>
+      </CardBody>
+      <CardFooter className="justify-between">
+        <p className='text-gray-500'>{course.duration}</p>
+        <p className='text-gray-500'>{course.student_count} 已註冊</p>
+      </CardFooter>
     </Card>
   )
 }

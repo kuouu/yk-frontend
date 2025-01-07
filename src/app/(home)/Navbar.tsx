@@ -1,6 +1,14 @@
 'use client'
 
-import { Link, Navbar } from "@nextui-org/react"
+import {
+  Link,
+  Navbar,
+  NavbarMenuToggle,
+  NavbarBrand,
+  NavbarContent,
+  NavbarMenu,
+  NavbarMenuItem
+} from "@nextui-org/react"
 import Image from "next/image"
 import { useSession } from "next-auth/react"
 
@@ -18,38 +26,42 @@ const Nav = () => {
   ]
   return (
     <Navbar>
-      <Navbar.Toggle showIn={'xs'} />
-      <Navbar.Brand
-        css={{ cursor: 'pointer' }}
-        onClick={() => location.href = '/'}
-      >
-        <Image src='assets/icons/logo.svg' alt="logo" width={48} height={48} />
-        <Image src='assets/icons/logo_word.svg' alt="logo" width={108} height={48} />
-      </Navbar.Brand>
+      <NavbarContent>
+        <NavbarBrand
+          className="cursor-pointer"
+          onClick={() => location.href = '/'}
+        >
+          <Image src='assets/icons/logo.svg' alt="logo" width={48} height={48} />
+          <Image src='assets/icons/logo_word.svg' alt="logo" width={108} height={48} />
+        </NavbarBrand>
+        <NavbarMenuToggle className="sm:hidden" />
+      </NavbarContent>
+
       {/* desktop menu */}
-      <Navbar.Content hideIn={'xs'}>
+      <NavbarContent className="hidden sm:flex" justify="end">
         {links.map((link) => !link.hide &&
-          <Navbar.Link
+          <Link
             key={link.name}
             href={link.link}
-            isActive={currentPath === link.link}
+            color={currentPath === link.link ? 'primary' : 'foreground'}
+            isBlock
           >
             {link.name}
-          </Navbar.Link>
+          </Link>
         )}
-      </Navbar.Content>
+      </NavbarContent>
 
       {/* mobile menu */}
-      <Navbar.Collapse showIn={'xs'}>
+      <NavbarMenu className="xs:hidden">
         {links.map((link) => !link.hide &&
-          <Navbar.CollapseItem
+          <NavbarMenuItem
             key={link.name}
             isActive={currentPath === link.link}
           >
-            <Link color='inherit' href={link.link}>{link.name}</Link>
-          </Navbar.CollapseItem>
+            <Link href={link.link}>{link.name}</Link>
+          </NavbarMenuItem>
         )}
-      </Navbar.Collapse>
+      </NavbarMenu>
     </Navbar>
   )
 }
