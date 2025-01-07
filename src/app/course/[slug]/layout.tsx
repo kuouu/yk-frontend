@@ -3,7 +3,6 @@ import { customFetch } from "@/utils/customFetch";
 import { store } from "@/store";
 import { selectCourseById } from "@/store/courseSlice";
 
-
 type Props = {
   params: { slug: string },
   children: React.ReactNode
@@ -15,14 +14,15 @@ const getCourseDetails = async (slug: string) => {
   return res;
 }
 
-const layout = async ({ params, children }: Props) => {
-  const courseDetails = await getCourseDetails(params.slug)
-  const course = selectCourseById(store.getState().courses, courseDetails.id)
+const Layout = async ({ params, children }: Props) => {
+  const { slug } = await params;
+  const courseDetails = await getCourseDetails(slug);
+  const course = selectCourseById(store.getState().courses, courseDetails.id);
   return (
     <CourseContextProvider course={{ ...course, ...courseDetails }}>
       {children}
     </CourseContextProvider>
-  )
+  );
 }
 
-export default layout
+export default Layout;

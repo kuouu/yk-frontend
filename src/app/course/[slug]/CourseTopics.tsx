@@ -1,40 +1,46 @@
 'use client'
 
-import { Container, Collapse, Table, Text } from "@nextui-org/react"
+import { 
+  Accordion, 
+  AccordionItem,
+  Table,
+  TableHeader,
+  TableColumn,
+  TableBody,
+  TableRow,
+  TableCell,
+} from "@nextui-org/react"
 import { useCourseContext } from "./CourseContext"
 
 const CourseTopics = () => {
   const { topics } = useCourseContext()
   return (
-    <Container css={{ padding: 0 }}>
-      <Text h3>課程內容</Text>
-      <Collapse.Group>
+    <div className="p-0">
+      <h3>課程內容</h3>
+      <Accordion>
         {topics && topics.map((topic: any) => (
-          <Collapse title={topic.title} key={topic.id}>
+          <AccordionItem title={topic.title} key={topic.id}>
             <Table
               aria-label={`lesson-table-${topic.id}`}
-              lined
-              headerLined
-              hoverable
-              css={{ padding: 0 }}
+              style={{ padding: 0 }}
             >
-              <Table.Header>
-                <Table.Column>單元</Table.Column>
-                <Table.Column align="end">時長</Table.Column>
-              </Table.Header>
-              <Table.Body>
+              <TableHeader>
+                <TableColumn>單元</TableColumn>
+                <TableColumn align="end">時長</TableColumn>
+              </TableHeader>
+              <TableBody>
                 {topic.lessons && topic.lessons.map((lesson: any) => (
-                  <Table.Row key={lesson.id}>
-                    <Table.Cell>{lesson.title}</Table.Cell>
-                    <Table.Cell css={{ textAlign: 'end' }}>{lesson.duration}</Table.Cell>
-                  </Table.Row>
+                  <TableRow key={lesson.id}>
+                    <TableCell>{lesson.title}</TableCell>
+                    <TableCell style={{ textAlign: 'end' }}>{lesson.duration}</TableCell>
+                  </TableRow>
                 ))}
-              </Table.Body>
+              </TableBody>
             </Table>
-          </Collapse>
+          </AccordionItem>
         ))}
-      </Collapse.Group>
-    </Container>
+      </Accordion>
+    </div>
   )
 }
 

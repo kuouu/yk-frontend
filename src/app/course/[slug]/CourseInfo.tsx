@@ -1,31 +1,41 @@
 'use client'
 
-import { Card, Text, Button } from "@nextui-org/react"
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Divider,
+  Button
+} from "@nextui-org/react"
 import { useCourseContext } from "./CourseContext"
 
 const CourseInfo = () => {
   const course = useCourseContext()
   return (
     <Card
-      isHoverable
-      css={{ minWidth: '300px', border: 'none', position: 'sticky', top: 10 }}
+      style={{
+        minWidth: '300px',
+        border: 'none',
+        position: 'sticky',
+        top: 10
+      }}
     >
-      <Card.Header css={{
+      <CardHeader style={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center'
       }}>
-        <Text h3 size='$2xl' className="my-2">
+        <p className="my-2 text-4xl mb-4">
           {course.price === 0 ? '免費' : `NT$ ${course?.price}`}
-        </Text>
+        </p>
         <Button>購買課程</Button>
-      </Card.Header>
-      <div className="my-4"><Card.Divider /></div>
-      <Card.Body css={{ paddingTop: 0 }}>
-        <Text h4 size='$lg' b className="my-2">
+      </CardHeader>
+      <div className="my-4"><Divider /></div>
+      <CardBody style={{ paddingTop: 0 }}>
+        <p className="my-2 text-lg font-bold">
           課程教材:
-        </Text>
+        </p>
         <ul className="m-0">
           {course.material_includes.split('\r\n').map((e: string, i: number, arr: any) => {
             if (i !== arr.length - 1) {
@@ -34,17 +44,17 @@ const CourseInfo = () => {
           })}
         </ul>
         {course.target_audience && <>
-          <div className="my-4"><Card.Divider /></div>
-          <Text h4 size='$lg' b className="mb-2">
+          <div className="my-4"><Divider /></div>
+          <p className="mb-2 text-lg font-bold">
             目標受眾:
-          </Text>
+          </p>
           <ul className="m-0">
             {course.target_audience.split('\r\n').map((e: string) =>
-              <li key={e}><Text>{e}</Text></li>
+              <li key={e}><p>{e}</p></li>
             )}
           </ul>
         </>}
-      </Card.Body>
+      </CardBody>
     </Card>
   )
 }

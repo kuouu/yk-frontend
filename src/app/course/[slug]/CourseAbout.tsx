@@ -1,6 +1,5 @@
 'use client'
 
-import { Text, Col, Grid } from "@nextui-org/react"
 import { useCourseContext } from "./CourseContext"
 
 const CourseAbout = () => {
@@ -15,23 +14,23 @@ const CourseAbout = () => {
     return acc + topic.lessons.length
   }, 0)
   return (
-    <Col>
-      <Text h3>關於課程</Text>
-      <Grid.Container gap={2} justify="center">
-        <Grid xs={6}>
-          <Text><b>課程時長</b>&emsp;{course?.duration}</Text>
-        </Grid>
-        <Grid xs={6}>
-          <Text><b>單元數量</b>&emsp;{topicNum} 章節 {lessonNum} 單元</Text>
-        </Grid>
-        <Grid xs={6}>
-          <Text><b>開課日期</b>&emsp;{date}</Text>
-        </Grid>
-        <Grid xs={6}>
-          <Text><b>課程人數</b>&emsp;{course?.student_count} 位同學</Text>
-        </Grid>
-      </Grid.Container>
-    </Col>
+    <div className="flex flex-col">
+      <h3 className="text-2xl font-bold my-4">關於課程</h3>
+      <div className="grid jusitfy-center gap-2 grid-cols-2">
+        <div>
+          <p><b>課程時長</b>&emsp;{course?.duration}</p>
+        </div>
+        <div>
+          <p><b>單元數量</b>&emsp;{topicNum} 章節 {lessonNum} 單元</p>
+        </div>
+        <div>
+          <p><b>開課日期</b>&emsp;{date}</p>
+        </div>
+        <div>
+          <p><b>課程人數</b>&emsp;{course?.student_count} 位同學</p>
+        </div>
+      </div>
+    </div>
   )
 }
 

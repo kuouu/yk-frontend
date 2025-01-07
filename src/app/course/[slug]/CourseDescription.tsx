@@ -1,17 +1,16 @@
 'use client'
 
-import { Text, Col } from "@nextui-org/react"
 import { useCourseContext } from "./CourseContext"
 
 const CourseDescription = () => {
   const course = useCourseContext()
   return (
-    <Col>
-      <Text h3>課程介紹</Text>
+    <div className="flex flex-col">
+      <h3>課程介紹</h3>
       <div dangerouslySetInnerHTML={{
         __html: course.content.replace(/(&nbsp;)+/g, ' ')
       }} />
-    </Col>
+    </div>
   )
 }
 
