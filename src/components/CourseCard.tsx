@@ -6,7 +6,7 @@ import {
   CardBody,
   CardFooter,
   Image,
-} from "@nextui-org/react"
+} from "@heroui/react"
 
 type Props = {
   course: CourseListType

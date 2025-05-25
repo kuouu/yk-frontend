@@ -1,6 +1,6 @@
 'use client'
 
-import { Col, Divider, Row, Text, Image } from "@nextui-org/react"
+import { Col, Divider, Row, Text, Image } from "@heroui/react"
 import { useAppSelector } from "@/store/hook"
 import { courseList } from "@/store/courseSlice"
 

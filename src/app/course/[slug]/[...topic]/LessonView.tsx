@@ -1,6 +1,6 @@
 'use client';
 
-import { Text, Col, Loading } from '@nextui-org/react';
+import { Text, Col, Loading } from '@heroui/react';
 import { useAppSelector } from "@/store/hook";
 import { selectLessonById } from '@/store/topicSlice';
 import YouTubeVideoPlayer from '@/components/YouTubeVideoPlayer';

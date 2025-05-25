@@ -1,6 +1,6 @@
 'use client'
 
-import { Grid } from "@nextui-org/react";
+import { Grid } from "@heroui/react";
 import Sidebar from "./Sidebar";
 import EnrollCourses from "./EnrollCourses";
 import { redirect } from "next/navigation";

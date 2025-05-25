@@ -1,6 +1,6 @@
 'use client'
 
-import { Card, User, Text, Link } from "@nextui-org/react";
+import { Card, User, Text, Link } from "@heroui/react";
 import { useAppSelector } from "@/store/hook";
 
 const Sidebar = () => {

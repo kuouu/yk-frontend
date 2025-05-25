@@ -8,7 +8,7 @@ import {
   NavbarContent,
   NavbarMenu,
   NavbarMenuItem
-} from "@nextui-org/react"
+} from "@heroui/react"
 import Image from "next/image"
 import { useSession } from "next-auth/react"
 

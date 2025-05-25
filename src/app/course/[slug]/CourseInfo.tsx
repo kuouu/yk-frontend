@@ -6,7 +6,7 @@ import {
   CardBody,
   Divider,
   Button
-} from "@nextui-org/react"
+} from "@heroui/react"
 import { useCourseContext } from "./CourseContext"
 
 const CourseInfo = () => {

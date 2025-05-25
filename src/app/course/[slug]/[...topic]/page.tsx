@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation'
 import { useAppSelector } from "@/store/hook";
 import { selectIsLogin } from "@/store/userSlice";
 import { useCourseContext } from "../CourseContext";
-import { Grid } from '@nextui-org/react';
+import { Grid } from '@heroui/react';
 import LessonNavigator from './LessonNavigator';
 import LessonView from './LessonView';
 

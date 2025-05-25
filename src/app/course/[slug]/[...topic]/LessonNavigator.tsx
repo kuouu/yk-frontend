@@ -1,7 +1,7 @@
 'use client'
 
 import { useCourseContext } from '../CourseContext';
-import { Collapse, Container, Link } from '@nextui-org/react';
+import { Collapse, Container, Link } from '@heroui/react';
 
 const LessonNavigator = () => {
   const course = useCourseContext()
