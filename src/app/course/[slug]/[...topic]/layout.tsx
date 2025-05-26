@@ -2,7 +2,7 @@ import { customFetch } from "@/utils/customFetch";
 import Preloader from "./Preloader";
 
 type Props = {
-  params: { topic: string[] }
+  params: Promise<{ topic: string[] }>
   children: React.ReactNode
 }
 
@@ -13,7 +13,7 @@ const getTopicDetails = async (topicId: string) => {
 }
 
 const layout = async ({ params, children }: Props) => {
-  const topicId = params.topic[0]
+  const topicId = (await params).topic[0]
   const topicDetails = await getTopicDetails(topicId)
   return (
     <div>

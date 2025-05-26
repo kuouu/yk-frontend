@@ -4,7 +4,7 @@ import { store } from "@/store";
 import { selectCourseById } from "@/store/courseSlice";
 
 type Props = {
-  params: { slug: string },
+  params: Promise<{ slug: string }>,
   children: React.ReactNode
 }
 

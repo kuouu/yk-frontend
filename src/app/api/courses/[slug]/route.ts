@@ -8,10 +8,10 @@ const prisma = new PrismaClient();
 
 export async function GET(
   req: Request,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   const course = await prisma.wp_posts.findFirst({
-    where: { post_name: params.slug },
+    where: { post_name: (await params).slug },
     select: {
       ID: true,
       post_title: true,
