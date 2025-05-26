@@ -1,7 +1,7 @@
 'use client'
 
 import { SessionProvider } from 'next-auth/react'
-import { NextUIProvider } from '@heroui/react';
+import { HeroUIProvider } from '@heroui/react';
 import { Provider } from 'react-redux';
 import { store } from '@/store';
 
@@ -11,7 +11,7 @@ type Props = {
 
 const Providers = ({ children }: Props) => {
   return (
-    <NextUIProvider>
+    <HeroUIProvider>
       <SessionProvider>
         <Provider store={store}>
           <main className="dark text-foreground bg-background">
@@ -19,7 +19,7 @@ const Providers = ({ children }: Props) => {
           </main>
         </Provider>
       </SessionProvider>
-    </NextUIProvider>
+    </HeroUIProvider>
   )
 }
 

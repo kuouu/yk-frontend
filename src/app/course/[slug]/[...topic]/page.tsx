@@ -1,19 +1,20 @@
 'use client';
 
+import React, { use } from 'react';
 import { redirect } from 'next/navigation'
 import { useAppSelector } from "@/store/hook";
 import { selectIsLogin } from "@/store/userSlice";
 import { useCourseContext } from "../CourseContext";
-import { Grid } from '@heroui/react';
 import LessonNavigator from './LessonNavigator';
 import LessonView from './LessonView';
 
 type Props = {
-  params: { topic: string[] }
+  params: Promise<{ topic: string[] }>
 }
 
 const CourseViewPage = ({ params }: Props) => {
-  const lessonId = params.topic[1]
+  const unwrappedParams = use(params)
+  const lessonId = unwrappedParams.topic[1];
   const course = useCourseContext()
   const isLogin = useAppSelector(selectIsLogin);
   const isEnrolled = useAppSelector(state =>
@@ -25,14 +26,14 @@ const CourseViewPage = ({ params }: Props) => {
   }
 
   return (
-    <Grid.Container css={{ padding: '2rem' }}>
-      <Grid xs={4}>
+    <div className='grid grid-cols-3 p-2 gap-4'>
+      <div>
         <LessonNavigator />
-      </Grid>
-      <Grid xs={8}>
+      </div>
+      <div className='col-span-2'>
         <LessonView lessonId={Number(lessonId)} />
-      </Grid>
-    </Grid.Container>
+      </div>
+    </div>
   )
 }
 

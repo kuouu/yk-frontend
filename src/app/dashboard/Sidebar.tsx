@@ -1,6 +1,14 @@
 'use client'
 
-import { Card, User, Text, Link } from "@heroui/react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Divider,
+  User,
+  Link
+} from "@heroui/react";
 import { useAppSelector } from "@/store/hook";
 
 const Sidebar = () => {
@@ -8,33 +16,33 @@ const Sidebar = () => {
 
   return (
     <aside>
-      <Card variant="flat" css={{border: 'none'}}>
-        <Card.Header>
+      <Card>
+        <CardHeader>
           <User
-            src={user.image || ""}
+            avatarProps={{
+              src: user.image || "",
+            }}
             name={user.username || ""}
             description={user.email || ""}
-            size="xl"
-            zoomed
           />
-        </Card.Header>
-        <Card.Divider />
-        <Card.Body>
-          <Text>我的課程</Text>
-        </Card.Body>
-        <Card.Divider />
-        <Card.Body>
-          <Text>個人資料</Text>
-        </Card.Body>
-        <Card.Divider />
-        <Card.Footer>
+        </CardHeader>
+        <Divider />
+        <CardBody>
+          <p>我的課程</p>
+        </CardBody>
+        <Divider />
+        <CardBody>
+          <p>個人資料</p>
+        </CardBody>
+        <Divider />
+        <CardFooter>
           <Link
-            color={'error'}
+            color='danger'
             href="/api/auth/signout"
           >
             登出
           </Link>
-        </Card.Footer>
+        </CardFooter>
       </Card>
     </aside>
   )

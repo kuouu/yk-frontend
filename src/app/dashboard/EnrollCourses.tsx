@@ -1,6 +1,6 @@
 'use client'
 
-import { Col, Divider, Row, Text, Image } from "@heroui/react"
+import { Divider, Image } from "@heroui/react"
 import { useAppSelector } from "@/store/hook"
 import { courseList } from "@/store/courseSlice"
 
@@ -8,17 +8,11 @@ const EnrollCourses = () => {
   const courses = useAppSelector(courseList);
   const enrolledId = useAppSelector(state => state.user.enrolledCourses)
   return (
-    <Col>
-      <Text h3>我的課程</Text>
-      <Divider css={{ margin: '10px 0' }} />
-      <Row
-        gap={2}
-        css={{
-          margin: '0',
-          paddingTop: '10px',
-          overflowX: 'scroll',
-          '&::-webkit-scrollbar': { display: 'none' }
-        }}
+    <div className="flex flex-col gap-4">
+      <h3>我的課程</h3>
+      <Divider/>
+      <div
+        className="flex justify-between items-center gap-2"
       >
         {courses
           .filter((course: CourseListType) => {
@@ -29,9 +23,9 @@ const EnrollCourses = () => {
           })
           .map((course: CourseListType) => {
             return (
-              <Col
+              <div
+                className="flex flex-col items-center gap-2 cursor-pointer"
                 key={course.id}
-                css={{ width: 'max-content', cursor: 'pointer' }}
                 onClick={() => location.href = `/course/${course.slug}`}
               >
                 <Image
@@ -40,15 +34,15 @@ const EnrollCourses = () => {
                   width={300}
                   height={200}
                 />
-                <Col css={{ marginTop: '10px', padding: 0 }}>
-                  <Text size='$lg' css={{ margin: 0 }}>{course.title}</Text>
+                <div className="flex flex-col items-center gap-1 text-center">                
+                  <p className="text-lg m-0">{course.title}</p>
                   <p className='text-gray-500'>by {course.author}</p>
-                </Col>
-              </Col>
+                </div>
+              </div>
             )
           })}
-      </Row>
-    </Col>
+      </div>
+    </div>
   )
 }
 

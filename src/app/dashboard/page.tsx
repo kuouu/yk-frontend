@@ -1,6 +1,5 @@
 'use client'
 
-import { Grid } from "@heroui/react";
 import Sidebar from "./Sidebar";
 import EnrollCourses from "./EnrollCourses";
 import { redirect } from "next/navigation";
@@ -15,18 +14,16 @@ const DashboardPage = () => {
   }
 
   return (
-    <Grid.Container
-      gap={2}
-      justify="center"
-      css={{padding: '2rem 4rem'}}
+    <div
+      className="grid grid-cols-12 gap-2 justify-items-center p-2"
     >
-      <Grid xs={4} justify="flex-end">
+      <div className="col-span-4 items-start">
         <Sidebar />
-      </Grid>
-      <Grid xs={8}>
+      </div>
+      <div className="col-span-8">
         <EnrollCourses />
-      </Grid>
-    </Grid.Container>
+      </div>
+    </div>
   )
 }
 

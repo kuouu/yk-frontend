@@ -1,6 +1,6 @@
 'use client';
 
-import { Text, Col, Loading } from '@heroui/react';
+import { Spinner } from '@heroui/react';
 import { useAppSelector } from "@/store/hook";
 import { selectLessonById } from '@/store/topicSlice';
 import YouTubeVideoPlayer from '@/components/YouTubeVideoPlayer';
@@ -14,18 +14,18 @@ const LessonView = ({ lessonId }: Props) => {
     selectLessonById(state, lessonId)
   )
   if(lesson === undefined) return (
-    <Col>
-      <Loading color="primary" />
-    </Col>
+    <div className="flex justify-center items-center h-full">
+      <Spinner color="primary" />
+    </div>
   )
   return (
-    <Col>
-      <Text h3>{lesson.title}</Text>
+    <div>
+      <h3>{lesson.title}</h3>
       <YouTubeVideoPlayer url={lesson.videoId} />
       <div dangerouslySetInnerHTML={{
         __html: lesson.content.replace(/(&nbsp;)+/g, ' ')
       }} />
-    </Col>
+    </div>
   )
 }
 
